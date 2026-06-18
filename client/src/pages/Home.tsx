@@ -21,7 +21,7 @@ import {
   All 9 sections per creative brief. Placeholder content where live assets are missing.
 */
 
-const CALENDLY_URL = "#book"; // Placeholder — E3 to provide Calendly link
+const CALENDLY_URL = "https://calendly.com/ryanjamesmiller/e3-consultation";
 
 // Scroll-triggered fade-in hook
 function useFadeIn() {
@@ -136,34 +136,9 @@ function HeroSection() {
               Book a Free Consultation
               <ArrowRight className="w-5 h-5" />
             </a>
-            <div className="flex items-center gap-3 pt-1">
-              <CheckCircle2 className="w-5 h-5 flex-shrink-0" style={{ color: "#F5A623" }} />
-              <span className="text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>
-                No sales pressure. No obligation. Just clarity.
-              </span>
-            </div>
           </div>
 
-          {/* Stat callout */}
-          <div className="mt-14 pt-10 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {[
-              { stat: "100%", label: "Cost predictability from day one" },
-              { stat: "8–15%", label: "Avg. annual group premium increase" },
-              { stat: "80%", label: "Reduction in admin burden" },
-            ].map((item) => (
-              <div key={item.stat}>
-                <div
-                  className="text-3xl font-bold mb-1"
-                  style={{ fontFamily: "'Barlow Condensed', sans-serif", color: "#F5A623" }}
-                >
-                  {item.stat}
-                </div>
-                <div className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>
-                  {item.label}
-                </div>
-              </div>
-            ))}
-          </div>
+
         </div>
       </div>
 
@@ -621,8 +596,7 @@ function ProcessCard({ label, icon, body, delay }: { label: string; icon: React.
 function TrustSection() {
   const ref = useFadeIn();
   const team = [
-    { name: "Ryan Miller", role: "Partner, E3 Advisors", bio: "Sales strategist and benefits advisor with deep roots in the insurance and hospitality space." },
-    { name: "Gene Erdman", role: "Partner, E3 Advisors", bio: "Benefits specialist with decades of experience helping employers navigate cost and compliance." },
+    { name: "Ryan James Miller", role: "Partner, E3 Advisors", bio: "Sales strategist and benefits advisor with deep roots in the insurance and hospitality space." },
     { name: "Dan Catanese", role: "Partner, E3 Advisors", bio: "Operations and compliance expert focused on building scalable benefits systems for growing businesses." },
   ];
 
@@ -656,19 +630,19 @@ function TrustSection() {
           style={{ backgroundColor: "#f7f8fa", borderLeft: "4px solid #F5A623" }}
         >
           <p className="text-xl italic mb-4" style={{ color: "#1B2D5B", fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600, fontSize: "1.5rem" }}>
-            "We cut our benefits spend by 22% in the first year and our employees actually have better coverage now. I wish we'd done this three years ago."
+            "We cut our benefits spend by 35% in the first year and our employees actually have better coverage now. I wish we'd done this three years ago."
           </p>
           <p className="text-sm font-semibold" style={{ color: "#004C97" }}>
-            [TESTIMONIAL — to be inserted by E3 team]
+            CEO — Multisite Restaurant Group
           </p>
         </div>
 
         {/* Stat callout */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-14">
           {[
-            { stat: "80%", label: "Reduction in benefits admin time" },
-            { stat: "$0", label: "Surprise renewal increases" },
-            { stat: "100%", label: "Employee plan portability" },
+            { stat: "0", label: "Compliance Violations in the past 12 months" },
+            { stat: "20%", label: "Reduction in Turnover Rate" },
+            { stat: "50%", label: "Reduction in HR Administration" },
           ].map((item) => (
             <div key={item.stat} className="text-center py-8 rounded-lg" style={{ backgroundColor: "#EEF3FA" }}>
               <div className="text-4xl font-bold mb-2" style={{ fontFamily: "'Barlow Condensed', sans-serif", color: "#1B2D5B" }}>
@@ -722,7 +696,7 @@ function TeamCard({ name, role, bio, delay }: { name: string; role: string; bio:
       </h3>
       <p className="text-sm font-semibold mb-3" style={{ color: "#F5A623" }}>{role}</p>
       <p className="text-sm leading-relaxed" style={{ color: "#4a5568" }}>{bio}</p>
-      <p className="text-xs mt-2 italic" style={{ color: "#9ca3af" }}>[Photo — to be inserted]</p>
+
     </div>
   );
 }
@@ -853,9 +827,7 @@ function FinalCTASection() {
             Book My Free Consultation
             <ArrowRight className="w-5 h-5" />
           </a>
-          <p className="mt-6 text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
-            No sales pressure. No obligation. Just clarity.
-          </p>
+
         </div>
       </div>
     </section>
