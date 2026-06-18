@@ -654,9 +654,11 @@ function TrustSection() {
         </div>
 
         {/* Team */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="flex flex-wrap justify-center gap-12">
           {team.map((member, i) => (
-            <TeamCard key={i} {...member} delay={i * 100} />
+            <div key={i} className="w-full sm:w-64">
+              <TeamCard {...member} delay={i * 100} />
+            </div>
           ))}
         </div>
       </div>
