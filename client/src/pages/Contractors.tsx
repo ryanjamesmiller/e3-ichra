@@ -24,7 +24,7 @@ import {
   Booking: e3-advisors.com/calendar
 */
 
-const BOOKING_URL = "https://e3-advisors.com/calendar";
+const BOOKING_URL = "https://calendly.com/ryanjamesmiller/e3-consultation";
 
 // ─── Scroll-triggered fade-in ───────────────────────────────────────────────
 function useFadeIn(delay = 0) {
