@@ -5,3 +5,6 @@
 - [ ] Re-run the GitHub Pages deployment after enabling Pages in repository settings.
 - [x] Add a qualified Fit Check header link and conversion callout to the main ICHRA page.
 - [ ] Verify the current GitHub Pages workflow and complete the remaining publication action.
+- [x] Build and verify a restaurant and multi-site franchise ICHRA landing page.
+- [x] Add and verify the restaurant-specific ICHRA Fit Check.
+- [x] Push the restaurant page and Fit Check update to the existing GitHub pull request.
