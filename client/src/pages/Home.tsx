@@ -69,13 +69,21 @@ function Header() {
           className="h-10 w-auto"
           style={{ filter: "brightness(0) invert(1)" }}
         />
-        <a
-          href={CALENDLY_URL}
-          className="e3-amber-btn px-5 py-2.5 rounded text-sm font-bold tracking-wide hidden sm:inline-flex items-center gap-2"
-        >
-          Book a Free Consultation
-          <ArrowRight className="w-4 h-4" />
-        </a>
+        <div className="flex items-center gap-3">
+          <a
+            href="/contractors#fit-check"
+            className="hidden lg:inline-flex items-center gap-2 px-4 py-2.5 rounded text-sm font-bold tracking-wide border border-white/30 text-white transition-colors hover:bg-white/10"
+          >
+            CA Fit Check
+          </a>
+          <a
+            href={CALENDLY_URL}
+            className="e3-amber-btn px-5 py-2.5 rounded text-sm font-bold tracking-wide hidden sm:inline-flex items-center gap-2"
+          >
+            Book a Free Consultation
+            <ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
       </div>
     </header>
   );
@@ -753,6 +761,30 @@ function QualificationSection() {
               If two or more of these describe your situation, it is worth a 30-minute conversation.{" "}
               <span style={{ color: "#F5A623" }}>That call is free and there is no obligation.</span>
             </p>
+          </div>
+
+          <div
+            className="rounded-lg p-8 mt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-6"
+            style={{ backgroundColor: "#EAF2FC", border: "1px solid #CFE0F5" }}
+          >
+            <div>
+              <p className="text-sm font-bold tracking-widest uppercase mb-2" style={{ color: "#004C97" }}>
+                California Contractors &amp; Manufacturers
+              </p>
+              <h3 className="text-2xl font-bold mb-2" style={{ color: "#1B2D5B", fontFamily: "'Barlow Condensed', sans-serif" }}>
+                Are you at 50–99 employees?
+              </h3>
+              <p className="text-base leading-relaxed" style={{ color: "#374151" }}>
+                Take the 60-second ICHRA Fit Check to see your estimated savings range.
+              </p>
+            </div>
+            <a
+              href="/contractors#fit-check"
+              className="e3-amber-btn px-6 py-3.5 rounded text-sm font-bold tracking-wide inline-flex items-center justify-center gap-2 flex-shrink-0"
+            >
+              Take the Fit Check
+              <ArrowRight className="w-4 h-4" />
+            </a>
           </div>
         </div>
       </div>
