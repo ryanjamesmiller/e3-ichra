@@ -4,3 +4,4 @@
 - [x] Confirm public DNS records for e3ichra.com and correct GitHub Pages routing.
 - [ ] Re-run the GitHub Pages deployment after enabling Pages in repository settings.
 - [x] Add a qualified Fit Check header link and conversion callout to the main ICHRA page.
+- [ ] Verify the current GitHub Pages workflow and complete the remaining publication action.
