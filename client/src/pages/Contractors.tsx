@@ -67,7 +67,7 @@ function Header() {
     >
       <div className="container flex items-center justify-between py-4">
         <img
-          src="/manus-storage/e3_logo_b5d1d97b.png"
+          src="https://e3-advisors.com/wp-content/uploads/2025/03/Group-288.png"
           alt="E3 Advisors"
           className="h-10 w-auto"
           style={{ filter: "brightness(0) invert(1)" }}
@@ -965,7 +965,7 @@ function Footer() {
       <div className="container flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-4">
           <img
-            src="/manus-storage/e3_logo_b5d1d97b.png"
+            src="https://e3-advisors.com/wp-content/uploads/2025/03/Group-288.png"
             alt="E3 Advisors"
             className="h-8 w-auto"
             style={{ filter: "brightness(0) invert(1)" }}

@@ -1,0 +1,3 @@
+- [x] Create public GitHub repository `e3-ichra` and push the current code.
+- [x] Configure the Vite build for GitHub Pages asset paths and deployment workflow.
+- [x] Verify production build and provide GitHub Pages publishing steps.
