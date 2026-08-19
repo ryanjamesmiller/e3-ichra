@@ -6,3 +6,4 @@
 - [x] Add a qualified Fit Check header link and conversion callout to the main ICHRA page.
 - [ ] Verify the current GitHub Pages workflow and complete the remaining publication action.
 - [x] Build and verify a restaurant and multi-site franchise ICHRA landing page.
+- [x] Add and verify the restaurant-specific ICHRA Fit Check.

@@ -119,18 +119,18 @@ function Hero() {
           </p>
           <div className="flex flex-col items-start gap-4 sm:flex-row">
             <a
+              href="#restaurant-fit-check"
+              className="e3-amber-btn inline-flex items-center gap-2 rounded px-8 py-4 text-base font-bold tracking-wide"
+            >
+              Take the Restaurant Fit Check <ArrowRight className="h-5 w-5" />
+            </a>
+            <a
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="e3-amber-btn inline-flex items-center gap-2 rounded px-8 py-4 text-base font-bold tracking-wide"
-            >
-              Book a Free Consultation <ArrowRight className="h-5 w-5" />
-            </a>
-            <a
-              href="#case-study"
               className="inline-flex items-center gap-2 rounded border border-white/30 px-8 py-4 text-base font-bold tracking-wide text-white transition-colors hover:bg-white/10"
             >
-              See What Changed for One Group
+              Book a Free Consultation
             </a>
           </div>
         </div>
@@ -390,6 +390,193 @@ function FAQ() {
   );
 }
 
+type FitAnswer = { text: string; value: number };
+type FitQuestion = { key: string; label: string; text: string; options: FitAnswer[] };
+
+const restaurantFitQuestions: FitQuestion[] = [
+  {
+    key: "locations",
+    label: "Question 1 of 5",
+    text: "How many locations are you responsible for?",
+    options: [
+      { text: "One location", value: 0 },
+      { text: "Two to five locations", value: 2 },
+      { text: "Six or more locations", value: 3 },
+    ],
+  },
+  {
+    key: "costTrend",
+    label: "Question 2 of 5",
+    text: "What has happened to your health-benefit costs in the last year?",
+    options: [
+      { text: "They have been mostly stable", value: 0 },
+      { text: "They went up 5% to 10%", value: 2 },
+      { text: "They went up more than 10%, or we are bracing for renewal", value: 3 },
+    ],
+  },
+  {
+    key: "spend",
+    label: "Question 3 of 5",
+    text: "Roughly what do you contribute per employee each month today?",
+    options: [
+      { text: "Under $500", value: 0 },
+      { text: "$500 to $700", value: 1 },
+      { text: "$700 to $900", value: 2 },
+      { text: "Over $900", value: 3 },
+    ],
+  },
+  {
+    key: "turnover",
+    label: "Question 4 of 5",
+    text: "How would you describe turnover across your team?",
+    options: [
+      { text: "Lower than we would expect in restaurants", value: 0 },
+      { text: "It is a constant but manageable problem", value: 2 },
+      { text: "It is hurting consistency, recruiting, or manager bandwidth", value: 3 },
+    ],
+  },
+  {
+    key: "hrLoad",
+    label: "Question 5 of 5",
+    text: "Who is carrying HR, benefits, and compliance work today?",
+    options: [
+      { text: "A dedicated internal HR team", value: 0 },
+      { text: "An HR or payroll person with several other priorities", value: 2 },
+      { text: "Operations leaders or owners are handling it on the side", value: 3 },
+    ],
+  },
+];
+
+function getRestaurantFitResult(answers: Record<string, FitAnswer>) {
+  const score = Object.values(answers).reduce((total, answer) => total + answer.value, 0);
+  if (score >= 10) {
+    return {
+      tier: "Strong Fit",
+      badge: { background: "#E4F6EC", color: "#1E824C" },
+      headline: "You have a real opportunity to reset your benefits strategy.",
+      body: "Your answers point to the exact mix of cost pressure, workforce complexity, and HR load where a defined contribution benefits structure can create more control.",
+      focus: ["Locking in a predictable benefits budget", "Giving different employee groups more relevant choice", "Taking recurring administration away from operations"],
+    };
+  }
+  if (score >= 5) {
+    return {
+      tier: "Worth Exploring",
+      badge: { background: "#FDF0DC", color: "#C97F00" },
+      headline: "There is likely room to improve without disrupting what works.",
+      body: "You may not need a full overhaul. A hybrid or class-based ICHRA structure could be a practical way to protect margin while improving the employee experience.",
+      focus: ["Finding which employee classes need a different option", "Comparing renewal exposure with a fixed monthly structure", "Reducing the internal HR burden"],
+    };
+  }
+  return {
+    tier: "Keep an Eye On It",
+    badge: { background: "#EEF1F5", color: "#5B6472" },
+    headline: "Your current setup may be working for now.",
+    body: "Even efficient groups need a plan before the next renewal or growth phase changes the math. A short review can give you a benchmark and a clearer next move.",
+    focus: ["Benchmarking your current spend", "Stress-testing the next renewal", "Making sure benefits are still supporting retention"],
+  };
+}
+
+function RestaurantFitCheck() {
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState<Record<string, FitAnswer>>({});
+  const isResult = step >= restaurantFitQuestions.length;
+  const currentQuestion = restaurantFitQuestions[step];
+  const progress = isResult ? 100 : ((step / (restaurantFitQuestions.length + 1)) * 100 + 12);
+  const result = getRestaurantFitResult(answers);
+
+  return (
+    <section id="restaurant-fit-check" className="py-24" style={{ backgroundColor: "#0B1F3A" }}>
+      <div className="container">
+        <div className="mx-auto max-w-2xl">
+          <div className="mb-10 text-center">
+            <div className="mb-4 inline-flex items-center gap-2">
+              <span className="h-px w-8" style={{ backgroundColor: "#F0A202" }} />
+              <span className="text-sm font-semibold uppercase tracking-widest" style={{ color: "#F0A202" }}>60-Second Check</span>
+              <span className="h-px w-8" style={{ backgroundColor: "#F0A202" }} />
+            </div>
+            <h2 className="mb-3 text-white" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 800, lineHeight: 1.05 }}>
+              The Restaurant Benefits Fit Check.
+            </h2>
+            <p style={{ color: "rgba(255,255,255,.65)" }}>
+              Five quick questions to see whether there is a stronger path for your cost, compliance, and team.
+            </p>
+          </div>
+
+          <div className="overflow-hidden rounded-2xl bg-white" style={{ boxShadow: "0 8px 48px rgba(0,0,0,.25)" }}>
+            <div className="px-8 py-7 text-center" style={{ background: "linear-gradient(135deg, #0B1F3A 0%, #071527 100%)" }}>
+              <p className="mb-2 text-xs font-bold uppercase tracking-widest" style={{ color: "#F0A202" }}>Restaurant &amp; Multi-Site Operators</p>
+              <h3 className="mb-2 text-2xl font-bold text-white" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>Where Is Benefits Costing You More Than It Should?</h3>
+              <p className="text-sm" style={{ color: "#C7D3E5" }}>Built for restaurant, hospitality, and franchise groups balancing margin, people, and California compliance.</p>
+            </div>
+            <div className="h-1" style={{ backgroundColor: "#DDE3EC" }}>
+              <div className="h-full transition-all duration-300" style={{ width: `${progress}%`, backgroundColor: "#F0A202" }} />
+            </div>
+
+            <div className="p-8">
+              {!isResult ? (
+                <>
+                  <p className="mb-2 text-xs font-bold uppercase tracking-wide" style={{ color: "#1B6FC9" }}>{currentQuestion.label}</p>
+                  <p className="mb-5 text-xl font-bold" style={{ color: "#0B1F3A", fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.35rem" }}>{currentQuestion.text}</p>
+                  <div className="mb-6 flex flex-col gap-3">
+                    {currentQuestion.options.map((option) => {
+                      const selected = answers[currentQuestion.key]?.text === option.text;
+                      return (
+                        <button
+                          key={option.text}
+                          onClick={() => setAnswers((current) => ({ ...current, [currentQuestion.key]: option }))}
+                          className="w-full rounded-lg border-2 px-4 py-3.5 text-left text-base transition-all"
+                          style={{ borderColor: selected ? "#1B6FC9" : "#DDE3EC", backgroundColor: selected ? "#EAF2FC" : "#FFFFFF", color: "#10192B", fontWeight: selected ? 600 : 400 }}
+                        >
+                          {option.text}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <button onClick={() => setStep((current) => Math.max(current - 1, 0))} disabled={step === 0} className="px-2 py-1 text-sm disabled:invisible" style={{ color: "#5B6472" }}>← Back</button>
+                    <button
+                      onClick={() => setStep((current) => current + 1)}
+                      disabled={!answers[currentQuestion.key]}
+                      className="rounded-lg px-6 py-3 text-sm font-bold transition-all disabled:cursor-not-allowed disabled:opacity-40"
+                      style={{ backgroundColor: "#F0A202", color: "#0B1F3A" }}
+                    >
+                      {step === restaurantFitQuestions.length - 1 ? "See My Result" : "Next"}
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <span className="mb-4 inline-block rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide" style={result.badge}>{result.tier}</span>
+                  <h3 className="mb-3 text-2xl font-bold" style={{ color: "#0B1F3A", fontFamily: "'Barlow Condensed', sans-serif" }}>{result.headline}</h3>
+                  <p className="mb-6 leading-relaxed" style={{ color: "#5B6472" }}>{result.body}</p>
+                  <div className="mb-6 rounded-xl p-5" style={{ backgroundColor: "#EAF2FC", border: "1px solid #CFE0F5" }}>
+                    <p className="mb-3 text-xs font-bold uppercase tracking-wide" style={{ color: "#1B6FC9" }}>What We Would Look At First</p>
+                    <div className="space-y-3">
+                      {result.focus.map((item) => (
+                        <div className="flex items-start gap-3" key={item}>
+                          <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0" style={{ color: "#1B6FC9" }} />
+                          <p className="text-sm leading-relaxed" style={{ color: "#374151" }}>{item}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="e3-amber-btn block w-full rounded-lg py-4 text-center text-base font-bold">
+                    Book My Free Benefits Breakdown Call
+                  </a>
+                  <p className="mt-3 text-center text-xs" style={{ color: "#5B6472" }}>15 minutes. Bring your current setup. We will give you a straight answer about the next right move.</p>
+                </>
+              )}
+            </div>
+          </div>
+          <p className="mt-5 text-center text-xs" style={{ color: "rgba(255,255,255,.35)" }}>
+            This is a directional check, not a benefit quote. Your exact opportunity depends on your workforce, current plan, locations, and compliance structure.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function FinalCTA() {
   const ref = useFadeIn();
   return (
@@ -407,9 +594,14 @@ function FinalCTA() {
           <p className="mx-auto mb-10 max-w-2xl text-lg" style={{ color: "rgba(255,255,255,.78)" }}>
             Bring us your current setup. We will look at the cost, the compliance exposure, and the employee experience — then give you a straight answer on the next right move.
           </p>
-          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="e3-amber-btn inline-flex items-center gap-3 rounded px-10 py-5 text-lg font-bold tracking-wide">
-            Book My Free Consultation <ArrowRight className="h-5 w-5" />
-          </a>
+          <div className="flex flex-col justify-center gap-4 sm:flex-row">
+            <a href="#restaurant-fit-check" className="e3-amber-btn inline-flex items-center justify-center gap-3 rounded px-8 py-5 text-lg font-bold tracking-wide">
+              Take the Restaurant Fit Check <ArrowRight className="h-5 w-5" />
+            </a>
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 rounded border border-white/30 px-8 py-5 text-lg font-bold tracking-wide text-white transition-colors hover:bg-white/10">
+              Book a Free Consultation
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -444,6 +636,7 @@ export default function Restaurants() {
       <WhatE3Does />
       <CaseStudy />
       <FAQ />
+      <RestaurantFitCheck />
       <FinalCTA />
       <Footer />
     </div>
