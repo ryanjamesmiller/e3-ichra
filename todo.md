@@ -7,4 +7,4 @@
 - [ ] Verify the current GitHub Pages workflow and complete the remaining publication action.
 - [x] Build and verify a restaurant and multi-site franchise ICHRA landing page.
 - [x] Add and verify the restaurant-specific ICHRA Fit Check.
-- [ ] Push the restaurant page and Fit Check update to the existing GitHub pull request.
+- [x] Push the restaurant page and Fit Check update to the existing GitHub pull request.
